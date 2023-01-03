@@ -9,13 +9,16 @@ const axios = require('axios');
  * path: Path to a file to be read
  */
 async function cat(path) {
+  let contents;
+
   try {
-    const contents = await fsP.readFile(path, 'utf8');
-    console.log(contents);
+    contents = await fsP.readFile(path, 'utf8');
   } catch (err) {
     console.error(err.message);
     process.exit(1);
   }
+
+  console.log(contents);
 }
 
 /**
@@ -25,19 +28,22 @@ async function cat(path) {
  * URL: URL string
  */
 async function webCat(URL) {
+  let contents;
+
   try {
-    const contents = await axios.get(URL);
-    console.log(contents);
+    contents = await axios.get(URL);
   } catch (err) {
     console.error(err.message);
     process.exit(1);
   }
+
+  console.log(contents);
 }
 
 const input = process.argv[2];
 
-if (input.includes('http://') ||
-  input.includes('https://')) {
+if (input.startsWith('http://') ||
+  input.startsWith('https://')) {
     webCat(input);
   } else {
     cat(input);

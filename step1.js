@@ -8,13 +8,16 @@ const fsP = require('fs/promises');
  * path: Path to a file to be read
  */
 async function cat(path){
+  let contents;
+
   try {
-    const contents = await fsP.readFile(path, 'utf8');
-    console.log(contents);
+    contents = await fsP.readFile(path, 'utf8');
   } catch (err) {
-    console.error(err.message);
+    console.error(err.message); // Could customize this more.
     process.exit(1);
   }
+
+  console.log(contents);
 }
 
 cat(process.argv[2]);
