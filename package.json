@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/davkluo/node-files/issues"
   },
-  "homepage": "https://github.com/davkluo/node-files#readme"
+  "homepage": "https://github.com/davkluo/node-files#readme",
+  "dependencies": {
+    "axios": "^1.2.2"
+  }
 }
